@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback Registration Form</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Internal CSS -->
+    <style>
+        .error {
+            color: #d9534f;
+            font-size: 0.85em;
+            display: none;
+            margin-top: 5px;
+        }
+        
+        .form-group.invalid input, 
+        .form-group.invalid select, 
+        .form-group.invalid textarea {
+            border-color: #d9534f;
+            background-color: #fdf5f5;
+        }
+        
+        .form-group.invalid .error {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Feedback Form</h2>
+        <form id="feedbackForm" onsubmit="return validateForm(event)">
+            
+            <div class="form-group" id="nameGroup">
+                <label for="studentName">Student Name *</label>
+                <input type="text" id="studentName" name="studentName" placeholder="Enter your full name">
+                <span class="error" id="nameError">Student Name cannot be empty</span>
+            </div>
+
+            <div class="form-group" id="emailGroup">
+                <label for="emailId">Email ID *</label>
+                <input type="text" id="emailId" name="emailId" placeholder="example@domain.com">
+                <span class="error" id="emailError">Please enter a valid email address</span>
+            </div>
+
+            <div class="form-group" id="mobileGroup">
+                <label for="mobileNumber">Mobile Number *</label>
+                <input type="text" id="mobileNumber" name="mobileNumber" placeholder="10-digit mobile number">
+                <span class="error" id="mobileError">Mobile number must contain valid 10 digits only</span>
+            </div>
+
+            <div class="form-group" id="deptGroup">
+                <label for="department">Department *</label>
+                <select id="department" name="department">
+                    <option value="">-- Select Department --</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Civil">Civil</option>
+                </select>
+                <span class="error" id="deptError">Please select a department</span>
+            </div>
+
+            <div class="form-group" id="genderGroup">
+                <label>Gender *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Male" id="genderMale"> Male</label>
+                    <label><input type="radio" name="gender" value="Female" id="genderFemale"> Female</label>
+                    <label><input type="radio" name="gender" value="Other" id="genderOther"> Other</label>
+                </div>
+                <span class="error" id="genderError">Please select your gender</span>
+            </div>
+
+            <div class="form-group" id="commentsGroup">
+                <label for="feedbackComments">Feedback Comments *</label>
+                <textarea id="feedbackComments" name="feedbackComments" rows="5" placeholder="Share your feedback (minimum 10 words)"></textarea>
+                <span class="error" id="commentsError">Feedback cannot be blank and must contain at least 10 words</span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="submitBtn">Submit form</button>
+                <button type="reset" id="resetBtn">Reset</button>
+            </div>
+            
+            <div id="successMessage" style="display: none; color: #5cb85c; margin-top: 15px; font-weight: bold; text-align: center;">
+                Feedback submitted successfully!
+            </div>
+        </form>
+    </div>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+</body>
+</html>
