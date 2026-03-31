@@ -4,6 +4,8 @@ pipeline {
     environment {
         // You can define paths or specific configurations here
         PYTHONUNBUFFERED = '1'
+        // Explicitly set the path to python so Jenkins (running as SYSTEM) can find it
+        PYTHON_CMD = 'C:\\Users\\kanis\\AppData\\Local\\Programs\\Python\\Python314\\python.exe'
     }
 
     stages {
@@ -19,9 +21,9 @@ pipeline {
             steps {
                 echo 'Installing Python dependencies...'
                 // Check if python is in PATH
-                bat 'python --version'
+                bat '"%PYTHON_CMD%" --version'
                 // Use python -m pip to avoid pip PATH issues
-                bat 'python -m pip install -r requirements.txt'
+                bat '"%PYTHON_CMD%" -m pip install -r requirements.txt'
             }
         }
 
@@ -29,7 +31,7 @@ pipeline {
             steps {
                 echo 'Running Selenium automated tests...'
                 // Run the Python test script
-                bat 'python test_form.py'
+                bat '"%PYTHON_CMD%" test_form.py'
             }
         }
     }
