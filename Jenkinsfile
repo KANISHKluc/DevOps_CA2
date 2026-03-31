@@ -18,9 +18,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing Python dependencies...'
-                // Install requirements for Selenium tests
-                // Using 'bat' since the OS is Windows
-                bat 'pip install -r requirements.txt'
+                // Check if python is in PATH
+                bat 'python --version'
+                // Use python -m pip to avoid pip PATH issues
+                bat 'python -m pip install -r requirements.txt'
             }
         }
 
